@@ -25,3 +25,32 @@ async function post(url, body) {
     console.log(error);
   }
 }
+
+async function remove(url, id) {
+  try {
+    const response = await fetch(`${urlbase}${url}`+`/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then( res => res.json() )
+    .then( ()=> location.reload());
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function put(url, id, body) {
+  try {
+    await fetch(`${urlbase}${url}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    }).then( response => response.json() )
+    .then( response => location.reload() )
+  } catch (error) {
+    console.log(error);
+  }
+}
